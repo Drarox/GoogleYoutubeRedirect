@@ -1,15 +1,14 @@
 {
     "name": "Google Search to Youtube Redirector",
     "version": "1.0",
-    "manifest_version": 2,
+    "manifest_version": 3,
     "description": "Redirects Google search results to YouTube videos",
     "permissions": [
       "tabs",
-      "https://www.google.com/"
+      "webNavigation"
     ],
     "background": {
-      "scripts": ["background.js"],
-      "persistent": false
+      "service_worker": "background.js"
     }
 }
   

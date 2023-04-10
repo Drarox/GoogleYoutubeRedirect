@@ -1,25 +1,37 @@
 const prevUrls = [];
 
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  if (changeInfo.url && tab.url.includes('google.com/search') && tab.url.includes('#fpstate=ive')) {
-    const url = new URL(changeInfo.url);
-    const vidParam = url.hash.split('vid:')[1];
+const urlFilter = [{ urlMatches: '.*google\.com\/search.*' }];
+
+//For opening in new tabs and returning to google with back button
+chrome.webNavigation.onBeforeNavigate.addListener(redirect, { url: urlFilter });
+
+//For video clicked on google search
+chrome.webNavigation.onReferenceFragmentUpdated.addListener(redirect, { url: urlFilter });
+
+function redirect(details) {
+  const tabId = details.tabId;
+  const url = details.url;
+
+  if (url && url.includes('google.com/search') && url.includes('#fpstate=ive')) {
+    const vidParam = new URL(url).hash.split('vid:')[1];
 
     if (vidParam) {
       const youtubeUrl = "https://www.youtube.com/watch?v=" + vidParam;
-      const googleUrl = url.href.split('#fpstate=ive')[0];
+      const googleUrl = url.split('#fpstate=ive')[0];
 
-      const currentUrlIndex = prevUrls.indexOf(tab.url);
+      const currentUrlIndex = prevUrls.indexOf(url);
 
-      if (!tab.active) { //Redirect if opened in a new tab
+      chrome.tabs.get(tabId, (tab) => {
+        if (!tab.active) { //Redirect if opened in a new tab
           chrome.tabs.update(tabId, {url: youtubeUrl});
-      } else if (currentUrlIndex == -1) { //Redirect only if has not already 
-          prevUrls.push(tab.url);
-          chrome.tabs.update(tabId, {url: youtubeUrl});
-      } else { //Reset to original google url when back button is pressed
-          prevUrls.splice(currentUrlIndex, 1);
-          chrome.tabs.update(tabId, {url: googleUrl});
-      }
+        } else if (currentUrlIndex == -1) { //Redirect only if has not already 
+            prevUrls.push(url);
+            chrome.tabs.update(tabId, {url: youtubeUrl});
+        } else { //Reset to original google url when back button is pressed
+            prevUrls.splice(currentUrlIndex, 1);
+            chrome.tabs.update(tabId, {url: googleUrl});
+        }
+      });
     }
   }
-});
+}
