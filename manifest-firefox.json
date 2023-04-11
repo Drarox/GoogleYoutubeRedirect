@@ -1,0 +1,27 @@
+{
+    "name": "Google Search to Youtube Redirector",
+    "version": "1.0",
+    "manifest_version": 3,
+    "author": "yannick.b443@gmail.com",
+    "description": "Redirects Google search results to YouTube videos",
+    "icons": {
+      "16": "assets/img/icon-16.png",
+      "32": "assets/img/icon-32.png",
+      "48": "assets/img/icon-48.png",
+      "128": "assets/img/icon-128.png"
+    },
+    "permissions": [
+      "tabs",
+      "webNavigation"
+    ],
+    "background": {
+        "scripts": ["src/background-firefox.js"]
+    },
+    "browser_specific_settings": {
+        "gecko": {
+          "id": "google-search-to-youtube-redirector@yannick-burkard.eu.org",
+          "strict_min_version": "42.0"
+        }
+    }
+}
+  
