@@ -2,7 +2,7 @@ let running = false;
 
 const prevUrls = [];
 
-const urlFilter = [{ urlMatches: '.*google\.com\/search.*' }];
+const urlFilter = [{ urlMatches: '.*google\.[a-z.]+\/search.*' }];
 
 //For opening in new tabs and returning to google with back button
 browser.webNavigation.onBeforeNavigate.addListener(redirect, { url: urlFilter });
@@ -17,7 +17,7 @@ function redirect(details) {
   const tabId = details.tabId;
   const url = details.url;
 
-  if (url && url.includes('google.com/search') && url.includes('#fpstate=ive')) {
+  if (url && url.includes('#fpstate=ive')) {
     running = true;
     const vidParam = new URL(url).hash.split('vid:')[1];
 
