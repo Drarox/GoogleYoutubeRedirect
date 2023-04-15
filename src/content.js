@@ -14,7 +14,7 @@ const searchQuery =  new URLSearchParams(window.location.search).get('q').replac
 // create the button link element
 const youtubeButton = document.createElement('a');
 if (buttonsMode) youtubeButton.className = navButtonClassName;
-if (!buttonsMode) youtubeButton.innerText = 'Youtube';
+if (!buttonsMode) youtubeButton.innerText = 'YouTube';
 youtubeButton.href = 'https://www.youtube.com/results?search_query='+searchQuery;
 
 // create the YouTube icon
