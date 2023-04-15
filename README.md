@@ -23,7 +23,7 @@
 
 <p align="center">
   <a href="#about">About</a> &#xa0; | &#xa0;
-  <a href="#demo">Demo</a> &#xa0; | &#xa0;
+  <a href="#preview">Preview</a> &#xa0; | &#xa0;
   <a href="#installation">Installation</a> &#xa0; | &#xa0;
   <a href="#how-it-works">How it works</a> &#xa0; | &#xa0;
   <a href="#contributions">Contributions</a> &#xa0; | &#xa0;
@@ -34,11 +34,21 @@
 
 Simple browser extension that redirects annoying behaviour of YouTube videos being opened embedded in Google Search to Youtube.com directly. This extension also supports opening the video in a new tab and allows the user to go back to the Google Search results using the back button.
 
+In addition, the extension also adds a YouTube button on the Google Search results page, allowing you to quickly and easily redirect your search query to YouTube.
+
 The extension supports Chromium-based browsers like Google Chrome, Microsoft Edge, Brave, Opera, and Firefox.
 
-## Demo ##
+## Preview ##
 
-![](https://raw.githubusercontent.com/Drarox/GoogleYoutubeRedirect/master/metadata/images/before-after.gif)
+#### Automatic redirect to YouTube :
+
+![before-after](https://raw.githubusercontent.com/Drarox/GoogleYoutubeRedirect/master/metadata/images/before-after.gif)
+
+#### YouTube search button added :
+
+![links_nav_preview](https://raw.githubusercontent.com/Drarox/GoogleYoutubeRedirect/master/metadata/images/links_nav_preview.png)
+
+![buttons_nav_preview](https://raw.githubusercontent.com/Drarox/GoogleYoutubeRedirect/master/metadata/images/buttons_nav_preview.png)
 
 ## Installation ##
 
