@@ -4,7 +4,7 @@
 </div>
 
 <p align="center">
-  <a href="https://chrome.google.com/webstore/" target="_blank">
+  <a href="https://chrome.google.com/webstore/detail/google-search-to-youtube/pioognemndfiikaapccdbcphgfdpgekp" target="_blank">
     <img alt="Chrome Web Store" src="https://img.shields.io/chrome-web-store/v/pioognemndfiikaapccdbcphgfdpgekp">
   </a>
   <a href="https://addons.mozilla.org/en-US/firefox/addon/google-to-youtube-redirector/" target="_blank">
@@ -56,7 +56,7 @@ Download the extension :
 
 - Chromium-based browsers (Chrome, Edge, Brave, Opera, etc.)
 
-  [![Chrome](https://raw.githubusercontent.com/Drarox/GoogleYoutubeRedirect/master/metadata/images/chrome.png)](https://chrome.google.com/webstore/)
+  [![Chrome](https://raw.githubusercontent.com/Drarox/GoogleYoutubeRedirect/master/metadata/images/chrome.png)](https://chrome.google.com/webstore/detail/google-search-to-youtube/pioognemndfiikaapccdbcphgfdpgekp)
 
 
 - Firefox
