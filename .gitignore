@@ -2,6 +2,7 @@
 node_modules
 Thumbs.db
 .vscode
+.idea
 
 *.sublime-project
 *.sublime-workspace

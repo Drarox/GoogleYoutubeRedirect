@@ -1,6 +1,6 @@
 {
     "name": "Google Search to Youtube Redirector",
-    "version": "1.1",
+    "version": "1.2",
     "manifest_version": 3,
     "author": "yannick.b443@gmail.com",
     "description": "Redirects Google search results to YouTube videos",
@@ -224,8 +224,7 @@
     "browser_specific_settings": {
         "gecko": {
           "id": "google-search-to-youtube-redirector@yannick-burkard.eu.org",
-          "strict_min_version": "42.0"
+          "strict_min_version": "58.0"
         }
     }
 }
-  
