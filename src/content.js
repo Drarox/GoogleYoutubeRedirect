@@ -45,13 +45,8 @@ if (mode === 'list') {
     youtubeLink.appendChild(youtubeTextDiv);
     listItemDiv.appendChild(youtubeLink);
 
-    // Insert at the second position in the list container
-    const listItems = listContainer.children;
-    if (listItems.length > 1)
-        listContainer.insertBefore(listItemDiv, listItems[1]); // Insert before the second item
-    else
-        listContainer.appendChild(listItemDiv); // Fallback if only one child exists
-
+    // Insert at the last position in the list container
+    listContainer.appendChild(listItemDiv);
 } else if (mode === 'button') {
     const youtubeButton = document.createElement('a');
     youtubeButton.href = 'https://www.youtube.com/results?search_query=' + searchQuery;
