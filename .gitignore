@@ -3,6 +3,7 @@ node_modules
 Thumbs.db
 .vscode
 .idea
+.qodo
 
 *.sublime-project
 *.sublime-workspace

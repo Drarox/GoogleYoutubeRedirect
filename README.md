@@ -5,20 +5,23 @@
 
 <p align="center">
   <a href="https://chrome.google.com/webstore/detail/google-search-to-youtube/pioognemndfiikaapccdbcphgfdpgekp" target="_blank">
-    <img alt="Chrome Web Store" src="https://img.shields.io/chrome-web-store/v/pioognemndfiikaapccdbcphgfdpgekp">
+    <img alt="Chrome Web Store" src="https://img.shields.io/chrome-web-store/rating/pioognemndfiikaapccdbcphgfdpgekp?logo=googlechrome">
   </a>
   <a href="https://addons.mozilla.org/en-US/firefox/addon/google-to-youtube-redirector/" target="_blank">
-    <img alt="Mozilla Add-on" src="https://img.shields.io/amo/v/google-to-youtube-redirector">
+    <img alt="Mozilla Add-on" src="https://img.shields.io/amo/rating/google-to-youtube-redirector?logo=firefoxbrowser">
+  </a>
+  <a href="https://chrome.google.com/webstore/detail/google-search-to-youtube/pioognemndfiikaapccdbcphgfdpgekp" target="_blank">
+    <img alt="Chrome Web Store" src="https://img.shields.io/chrome-web-store/v/pioognemndfiikaapccdbcphgfdpgekp?label=chrome&logo=googlechrome">
+  </a>
+  <a href="https://addons.mozilla.org/en-US/firefox/addon/google-to-youtube-redirector/" target="_blank">
+    <img alt="Mozilla Add-on" src="https://img.shields.io/amo/v/google-to-youtube-redirector?label=firefox&logo=firefoxbrowser">
   </a>
   <a href="https://github.com/Drarox/GoogleYoutubeRedirect/issues" target="_blank">
-    <img alt="GitHub issues" src="https://img.shields.io/github/issues/Drarox/GoogleYoutubeRedirect">
+    <img alt="GitHub issues" src="https://img.shields.io/github/issues/Drarox/GoogleYoutubeRedirect?logo=github">
   </a> 
   <a href="https://github.com/Drarox/GoogleYoutubeRedirect/pulls" target="_blank">
-    <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/Drarox/GoogleYoutubeRedirect">
+    <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/Drarox/GoogleYoutubeRedirect?logo=github">
   </a>  
-  <a href="https://github.com/Drarox/GoogleYoutubeRedirect/blob/master/LICENSE" target="_blank">
-    <img alt="GitHub" src="https://img.shields.io/github/license/drarox/GoogleYoutubeRedirect">
-  </a>
 </p>
 
 <p align="center">
