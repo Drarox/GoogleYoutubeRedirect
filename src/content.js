@@ -1,25 +1,33 @@
 const navButtonClassName = 'zItAnd FOU1zf GMT2kb'; // Button mode classes
 const navLinkClassName = 'hdtb-mitem'; // Link mode classes
-const listContainer = document.querySelector('div[role="list"][style="display:contents"]'); // List mode detection
+const listContainer1 = document.querySelector('div[role="list"][style="display:contents"]'); // Original list mode
+const listContainer2 = document.querySelector('div.beZ0tf.O1uzAe[role="list"]'); // New list mode
 
-// Detect Google search navigation mode: 'nav', 'button', or 'list'
+// Detect Google search navigation mode: 'nav', 'button', 'list', or 'list2'
 let mode;
+let listContainer;
 if (document.getElementsByClassName(navLinkClassName).length > 0) {
     mode = 'nav';
 } else if (document.getElementsByClassName(navButtonClassName).length > 0) {
     mode = 'button';
-} else if (listContainer) {
+} else if (listContainer1) {
     mode = 'list';
+    listContainer = listContainer1;
+} else if (listContainer2) {
+    mode = 'list2';
+    listContainer = listContainer2;
 } else {
     console.error('Unknown navigation mode.');
     mode = null;
 }
 
 // Get the search query from the Google search input
-const searchQuery = new URLSearchParams(window.location.search).get('q').replace(/ /g, '+');
+const searchQuery = encodeURIComponent(new URLSearchParams(window.location.search).get('q')).replace(/%20/g, '+');
 
-// Create the YouTube button/link element
-if (mode === 'list') {
+function addYouTubeButton() {
+
+    // Create the YouTube button/link element
+    if (mode === 'list') {
     // Create the list item div
     const listItemDiv = document.createElement('div');
     listItemDiv.setAttribute('role', 'listitem');
@@ -43,6 +51,39 @@ if (mode === 'list') {
 
     // Append the text div to the anchor, and the anchor to the list item
     youtubeLink.appendChild(youtubeTextDiv);
+    listItemDiv.appendChild(youtubeLink);
+
+    // Insert at the last position in the list container
+    listContainer.appendChild(listItemDiv);
+} else if (mode === 'list2') {
+    // Create the list item div for the new list style
+    const listItemDiv = document.createElement('div');
+    listItemDiv.setAttribute('role', 'listitem');
+    listItemDiv.setAttribute('data-hveid', 'CBsQAA');
+    listItemDiv.setAttribute('data-ved', '2ahUKEwjC2q3-qtOOAxXkKvsDHc7IHTUQtoAJegQIGxAA');
+
+    // Create the anchor element
+    const youtubeLink = document.createElement('a');
+    youtubeLink.href = 'https://www.youtube.com/results?search_query=' + searchQuery;
+    youtubeLink.className = 'C6AK7c';
+    youtubeLink.setAttribute('role', 'link');
+    youtubeLink.setAttribute('tabindex', '0');
+    youtubeLink.setAttribute('data-hveid', 'CBsQAQ');
+    youtubeLink.setAttribute('data-ved', '2ahUKEwjC2q3-qtOOAxXkKvsDHc7IHTUQ2Z0MegQIGxAB');
+
+    // Create the inner div
+    const youtubeInnerDiv = document.createElement('div');
+    youtubeInnerDiv.setAttribute('jsname', 'xBNgKe');
+    youtubeInnerDiv.className = 'mXwfNd';
+
+    // Create the span with text
+    const youtubeSpan = document.createElement('span');
+    youtubeSpan.className = 'R1QWuf';
+    youtubeSpan.textContent = 'YouTube';
+
+    // Assemble the structure
+    youtubeInnerDiv.appendChild(youtubeSpan);
+    youtubeLink.appendChild(youtubeInnerDiv);
     listItemDiv.appendChild(youtubeLink);
 
     // Insert at the last position in the list container
@@ -106,4 +147,5 @@ if (mode === 'list') {
     // add the button to the existing ones
     const existingLinks = document.getElementsByClassName(navLinkClassName)[1];
     existingLinks.parentNode.insertBefore(youtubeLink, existingLinks);
+    }
 }
