@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9f9f9;
+            --text-primary: #0f0f0f;
+            --text-secondary: #606060;
+            --border-color: #e0e0e0;
+            --youtube-red: #ff0000;
+            --youtube-red-hover: #cc0000;
+            --success-bg: #e8f5e8;
+            --success-text: #2e7d32;
+            --success-border: #c8e6c9;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #1f1f1f;
+                --bg-secondary: #2f2f2f;
+                --text-primary: #ffffff;
+                --text-secondary: #aaaaaa;
+                --border-color: #3f3f3f;
+                --success-bg: #1e3a1e;
+                --success-text: #4caf50;
+                --success-border: #2e7d32;
+            }
+        }
+
+        body {
+            width: 320px;
+            padding: 20px;
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        
+        .header h1 {
+            font-size: 20px;
+            margin: 0 0 8px 0;
+            color: var(--youtube-red);
+            font-weight: 500;
+        }
+        
+        .header p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        
+        .setting {
+            margin-bottom: 16px;
+            padding: 16px;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+        
+        .setting label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+        
+        .toggle {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .toggle span {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 28px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--border-color);
+            transition: .3s;
+            border-radius: 28px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        input:checked + .slider {
+            background-color: var(--youtube-red);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+        
+        .credits {
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        
+        .credits p {
+            margin: 4px 0;
+        }
+        
+        .credits a {
+            color: var(--youtube-red);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .credits a:hover {
+            color: var(--youtube-red-hover);
+            text-decoration: underline;
+        }
+        
+        .status {
+            margin-top: 12px;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 12px;
+            display: none;
+        }
+        
+        .status.success {
+            background-color: var(--success-bg);
+            color: var(--success-text);
+            border: 1px solid var(--success-border);
+        }
+
+        .youtube-icon {
+            width: 20px;
+            height: 14px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>
+            YouTube Redirector
+        </h1>
+        <p>Redirect Google search videos to YouTube</p>
+    </div>
+    
+    <div class="setting">
+        <label>Auto-redirect videos</label>
+        <div class="toggle">
+            <label class="switch">
+                <input type="checkbox" id="autoRedirect" checked>
+                <span class="slider"></span>
+            </label>
+            <span>Enable automatic redirection</span>
+        </div>
+    </div>
+    
+    <div class="setting">
+        <label>Show YouTube button</label>
+        <div class="toggle">
+            <label class="switch">
+                <input type="checkbox" id="showYouTubeButton" checked>
+                <span class="slider"></span>
+            </label>
+            <span>Add YouTube button to search results</span>
+        </div>
+    </div>
+    
+    <div class="status" id="status"></div>
+    
+    <div class="credits">
+        <p><strong>Made by <a href="https://github.com/Drarox" target="_blank">Drarox</a></strong></p>
+        <p><a href="https://github.com/Drarox/GoogleYoutubeRedirect" target="_blank">GitHub Repository</a></p>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>

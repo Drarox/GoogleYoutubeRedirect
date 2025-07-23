@@ -5,7 +5,7 @@ function make_zip {
     local zip_type=$1
     local version=$(grep -o '"version": *"[0-9.]*"' manifest.json | cut -d'"' -f4)
     local zip_file="output/${zip_type}_v${version}.zip"
-    zip -r "$zip_file" manifest.json src/ assets/
+    zip -r "$zip_file" manifest.json src/ assets/ -x "*.DS_Store"
 }
 
 # Create output directory if it doesn't already exist

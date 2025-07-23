@@ -35,6 +35,15 @@ function handleVideoClick(details) {
         return;
       }
 
+      // Check user preferences
+      chrome.storage.sync.get({
+        autoRedirect: true
+      }, (settings) => {
+        // Skip if auto-redirect is disabled
+        if (!settings.autoRedirect) {
+          return;
+        }
+
         // Store the original Google URL for this tab
         redirectedTabs.set(tabId, googleUrl);
         

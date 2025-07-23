@@ -24,6 +24,15 @@ if (document.getElementsByClassName(navLinkClassName).length > 0) {
 // Get the search query from the Google search input
 const searchQuery = encodeURIComponent(new URLSearchParams(window.location.search).get('q')).replace(/%20/g, '+');
 
+// Check user preferences before adding button
+chrome.storage.sync.get({
+    showYouTubeButton: true
+}, (settings) => {
+    if (settings.showYouTubeButton && mode && searchQuery) {
+        addYouTubeButton();
+    }
+});
+
 function addYouTubeButton() {
 
     // Create the YouTube button/link element
