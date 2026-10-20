@@ -1,6 +1,6 @@
 {
   "name": "Google Search to Youtube Redirector",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "manifest_version": 3,
   "author": "yannick.b443@gmail.com",
   "description": "Redirects Google search results to YouTube videos",
