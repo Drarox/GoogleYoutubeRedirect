@@ -29,6 +29,7 @@
   <a href="#preview">Preview</a> &#xa0; | &#xa0;
   <a href="#installation">Installation</a> &#xa0; | &#xa0;
   <a href="#how-it-works">How it works</a> &#xa0; | &#xa0;
+  <a href="#password-protection">Password protection</a> &#xa0; | &#xa0;
   <a href="#contributions">Contributions</a> &#xa0; | &#xa0;
   <a href="#license">License</a>
 </p>
@@ -72,6 +73,14 @@ Once installed, the extension will automatically redirect any embedded YouTube v
 This extension automatically detects when you click on a YouTube video link in Google Search and redirects you to the YouTube website, bypassing the embedded video player in Google Search. You can also right-click on a YouTube video link in Google Search and select "Open Link in New Tab" to open the video on YouTube.com in a new tab.
 
 When you are done watching the video, you can use the back button to return to the Google Search results.
+
+## Password protection ##
+
+You can lock the extension settings with a password. Open the extension popup, turn on **Password protection** and choose a password (at least 4 characters). From then on, the popup asks for the password before showing the settings. Use **Change password** to pick a new one, or turn the option off to remove it.
+
+The password itself is never stored. Only a salted PBKDF2-SHA256 hash is kept in the browser's local extension storage, so it is not synced to your other devices.
+
+The lock stops the settings from being changed casually, but anyone with access to the browser can still disable or remove the extension. If you forget your password, remove and reinstall the extension to reset it.
 
 ## Contributions ##
 
