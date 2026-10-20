@@ -1,7 +1,7 @@
 const navButtonClassName = 'zItAnd FOU1zf GMT2kb'; // Button mode classes
 const navLinkClassName = 'hdtb-mitem'; // Link mode classes
 const listContainer1 = document.querySelector('div[role="list"][style="display:contents"]'); // Original list mode
-const listContainer2 = document.querySelector('div.beZ0tf.O1uzAe[role="list"]'); // New list mode
+const listContainer2 = document.querySelector('div.beZ0tf[role="list"]'); // New list mode
 
 // Detect Google search navigation mode: 'nav', 'button', 'list', or 'list2'
 let mode;
