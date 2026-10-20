@@ -14,6 +14,11 @@
             --success-bg: #e8f5e8;
             --success-text: #2e7d32;
             --success-border: #c8e6c9;
+            --error-text: #c62828;
+            --input-border: #8d8d8d;
+            --focus-ring: #065fd4;
+            --button-primary-bg: #cc0000;
+            --button-primary-bg-hover: #a60000;
         }
 
         @media (prefers-color-scheme: dark) {
@@ -26,7 +31,13 @@
                 --success-bg: #1e3a1e;
                 --success-text: #4caf50;
                 --success-border: #2e7d32;
+                --error-text: #ff6b6b;
+                --focus-ring: #3ea6ff;
             }
+        }
+
+        [hidden] {
+            display: none !important;
         }
 
         body {
@@ -176,6 +187,142 @@
             margin-right: 8px;
             vertical-align: middle;
         }
+
+        /* Password protection */
+        .switch input:focus-visible + .slider,
+        .field input:focus-visible,
+        .btn:focus-visible {
+            outline: 2px solid var(--focus-ring);
+            outline-offset: 2px;
+        }
+
+        .lock-screen {
+            text-align: center;
+        }
+
+        .lock-icon {
+            width: 32px;
+            height: 32px;
+            color: var(--youtube-red);
+        }
+
+        .lock-icon rect {
+            fill: currentColor;
+        }
+
+        .lock-icon path {
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        .lock-screen h2 {
+            margin: 8px 0 4px 0;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .lock-message {
+            margin: 0 0 16px 0;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .lock-screen .field {
+            text-align: left;
+        }
+
+        .lock-screen .btn {
+            width: 100%;
+        }
+
+        .field {
+            margin-bottom: 12px;
+        }
+
+        .setting .field label {
+            margin-bottom: 4px;
+            font-size: 13px;
+        }
+
+        .field input {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 8px 10px;
+            font: inherit;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            border: 1px solid var(--input-border);
+            border-radius: 6px;
+        }
+
+        .field-hint {
+            margin: 4px 0 0 0;
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        .form-error {
+            margin: 0;
+            color: var(--error-text);
+            font-size: 12px;
+        }
+
+        .form-error:not(:empty) {
+            margin-bottom: 12px;
+        }
+
+        .password-form {
+            margin-top: 4px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .setting-action {
+            margin-top: 4px;
+        }
+
+        .btn {
+            box-sizing: border-box;
+            padding: 8px 16px;
+            font: inherit;
+            font-size: 13px;
+            font-weight: 500;
+            border: 1px solid transparent;
+            border-radius: 18px;
+            cursor: pointer;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: default;
+        }
+
+        .btn-primary {
+            background-color: var(--button-primary-bg);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background-color: var(--button-primary-bg-hover);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border-color: var(--input-border);
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background-color: var(--border-color);
+        }
     </style>
 </head>
 <body>
@@ -186,25 +333,73 @@
         <p>Redirect Google search videos to YouTube</p>
     </div>
     
-    <div class="setting">
-        <label>Auto-redirect videos</label>
-        <div class="toggle">
-            <label class="switch">
-                <input type="checkbox" id="autoRedirect" checked>
-                <span class="slider"></span>
-            </label>
-            <span>Enable automatic redirection</span>
+    <!-- Shown instead of the settings when a password is set -->
+    <form class="setting lock-screen" id="lockScreen" hidden novalidate>
+        <svg class="lock-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="5" y="10" width="14" height="11" rx="2"></rect>
+            <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+        </svg>
+        <h2>Settings locked</h2>
+        <p class="lock-message">Enter your password to change the extension settings.</p>
+        <div class="field">
+            <label for="unlockPassword">Password</label>
+            <input type="password" id="unlockPassword" autocomplete="current-password" required aria-describedby="unlockError">
         </div>
-    </div>
-    
-    <div class="setting">
-        <label>Show YouTube button</label>
-        <div class="toggle">
-            <label class="switch">
-                <input type="checkbox" id="showYouTubeButton" checked>
-                <span class="slider"></span>
-            </label>
-            <span>Add YouTube button to search results</span>
+        <p class="form-error" id="unlockError" role="alert"></p>
+        <button type="submit" class="btn btn-primary" id="unlockButton">Unlock</button>
+    </form>
+
+    <div id="settingsPanel" hidden>
+        <div class="setting">
+            <label>Auto-redirect videos</label>
+            <div class="toggle">
+                <label class="switch">
+                    <input type="checkbox" id="autoRedirect" checked>
+                    <span class="slider"></span>
+                </label>
+                <span>Enable automatic redirection</span>
+            </div>
+        </div>
+
+        <div class="setting">
+            <label>Show YouTube button</label>
+            <div class="toggle">
+                <label class="switch">
+                    <input type="checkbox" id="showYouTubeButton" checked>
+                    <span class="slider"></span>
+                </label>
+                <span>Add YouTube button to search results</span>
+            </div>
+        </div>
+
+        <div class="setting">
+            <label id="passwordProtectionLabel">Password protection</label>
+            <div class="toggle">
+                <label class="switch">
+                    <input type="checkbox" id="passwordProtection" aria-labelledby="passwordProtectionLabel" aria-describedby="passwordProtectionDescription">
+                    <span class="slider"></span>
+                </label>
+                <span id="passwordProtectionDescription">Require a password to open settings</span>
+            </div>
+
+            <button type="button" class="btn btn-secondary setting-action" id="changePassword" hidden>Change password</button>
+
+            <form class="password-form" id="passwordForm" hidden novalidate>
+                <div class="field">
+                    <label for="newPassword">New password</label>
+                    <input type="password" id="newPassword" autocomplete="new-password" required aria-describedby="newPasswordHint passwordFormError">
+                    <p class="field-hint" id="newPasswordHint"></p>
+                </div>
+                <div class="field">
+                    <label for="confirmPassword">Confirm password</label>
+                    <input type="password" id="confirmPassword" autocomplete="new-password" required aria-describedby="passwordFormError">
+                </div>
+                <p class="form-error" id="passwordFormError" role="alert"></p>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelPassword">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="savePassword">Save password</button>
+                </div>
+            </form>
         </div>
     </div>
     
@@ -215,6 +410,7 @@
         <p><a href="https://github.com/Drarox/GoogleYoutubeRedirect" target="_blank">GitHub Repository</a></p>
     </div>
     
+    <script src="password.js"></script>
     <script src="popup.js"></script>
 </body>
 </html>
